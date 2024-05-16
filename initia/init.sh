@@ -1,7 +1,7 @@
 #!/bin/bash
 
 if [ ! -f "$HOME/.initia/config/genesis.json" ]; then
-    initiad init $moniker --chain-id=$chainId
+    initiad init "$moniker" --chain-id=$chainId
     initiad config set client chain-id $chainId
 
     wget -O $HOME/.initia/config/genesis.json https://initia.s3.ap-southeast-1.amazonaws.com/initiation-1/genesis.json
@@ -54,6 +54,6 @@ rm -rf /root/initiad.log
 nohup initiad start >> /root/initiad.log
 echo "服务已经启动!"
 
-nohup $HOME/slinky/build/slinky --oracle-config-path ./config/core/oracle.json --market-map-endpoint 0.0.0.0:27090 >> /root/slinky.log
-echo "预言机已经启动!"
+# nohup $HOME/slinky/build/slinky --oracle-config-path ./config/core/oracle.json --market-map-endpoint 0.0.0.0:27090 >> /root/slinky.log
+# echo "预言机已经启动!"
 

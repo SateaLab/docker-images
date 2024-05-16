@@ -40,7 +40,7 @@ if [ ! -f "$HOME/.initia/config/genesis.json" ]; then
     sed -i -e 's/^metrics_enabled = "false"/metrics_enabled = "false"/'  $HOME/.initia/config/app.toml     
 
     wget -O initia_120971.tar.lz4 https://snapshots.polkachu.com/testnet-snapshots/initia/initia_141999.tar.lz4 --inet4-only
-    initiad tendermint unsafe-reset-all --home $HOME/.initia --keep-addr-book
+    # initiad tendermint unsafe-reset-all --home $HOME/.initia --keep-addr-book
 
     lz4 -c -d initia_120971.tar.lz4 | tar -x -C $HOME/.initia
     rm -rf initia_120971.tar.lz4

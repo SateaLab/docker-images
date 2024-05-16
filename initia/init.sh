@@ -34,6 +34,11 @@ if [ ! -f "$HOME/.initia/config/genesis.json" ]; then
 
     sed -i -e "s|^minimum-gas-prices *=.*|minimum-gas-prices = \"0.15uinit,0.01uusdc\"|" $HOME/.initia/config/app.toml
 
+    sed -i -e 's/^enabled = "false"/enabled = "true"/' HOME/.initia/config/app.toml 
+    sed -i -e 's/^oracle_address = ""/oracle_address = "127.0.0.1:8080"/'  $HOME/.initia/config/app.toml 
+    sed -i -e 's/^client_timeout = "2s"/client_timeout = "500ms"/'  $HOME/.initia/config/app.toml 
+    sed -i -e 's/^metrics_enabled = "false"/metrics_enabled = "false"/'  $HOME/.initia/config/app.toml     
+
     wget -O initia_120971.tar.lz4 https://snapshots.polkachu.com/testnet-snapshots/initia/initia_141999.tar.lz4 --inet4-only
     initiad tendermint unsafe-reset-all --home $HOME/.initia --keep-addr-book
 
@@ -48,3 +53,7 @@ rm -rf /root/initiad.log
 
 nohup initiad start >> /root/initiad.log
 echo "服务已经启动!"
+
+nohup $HOME/slinky/build/slinky --oracle-config-path ./config/core/oracle.json --market-map-endpoint 0.0.0.0:27090 >> /root/slinky.log
+echo "预言机已经启动!"
+

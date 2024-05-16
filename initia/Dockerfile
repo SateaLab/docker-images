@@ -17,6 +17,12 @@ RUN git clone https://github.com/initia-labs/initia.git && \
 ENV moniker test
 ENV chainId initiation-1
 
+ENV SLINKY_VERSION v0.4.3
+RUN git clone https://github.com/skip-mev/slinky.git && \
+    cd slinky && \
+    git checkout $SLINKY_VERSION && \
+    make build
+
 COPY ./init.sh ./init.sh
 
 RUN chmod +x ./init.sh

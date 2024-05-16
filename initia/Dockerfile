@@ -8,10 +8,10 @@ RUN curl -L https://dl.google.com/go/go1.22.1.linux-amd64.tar.gz | tar -xzf - -C
 
 ENV GOPATH $HOME/go
 ENV PATH $PATH:/usr/local/go/bin:$HOME/go/bin
-
+ENV INITIA_VERSION v0.2.14
 RUN git clone https://github.com/initia-labs/initia.git && \
     cd initia && \
-    git checkout v0.2.14 && \
+    git checkout $INITIA_VERSION && \
     make install
 
 ENV moniker test
